@@ -92,7 +92,7 @@ with gr.Blocks() as demo:
             seed_slider = gr.Slider(0, 100000, label="Random seed", value=0)
             with gr.Row():
                 wta_control = gr.Checkbox(label="Enable Winner Takes All (Recommend)",value=True)
-                rcm_control = gr.Checkbox(label="Enable Reference Contextual Masking (Disable for efficiency with minor loss)",value=False)
+                rcm_control = gr.Checkbox(label="Enable Reference Contextual Masking (Disable for efficiency with minor loss)",value=True)
 
         with gr.Column(scale=1):
             output = gr.Image(label="Generated Image")
