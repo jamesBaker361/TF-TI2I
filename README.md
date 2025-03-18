@@ -16,40 +16,29 @@ conda create -n tfti2i python=3.9 -y
 conda activate tfti2i
 pip install -r requirements.txt
 ```
-This repository is built upon the following open-source projects. We sincerely appreciate their contributions:
-
-* Diffusers: [Hugging Face Diffusers](https://github.com/huggingface/diffusers)
-* HD-Painter: [Picsart AI Research - HD-Painter](https://github.com/Picsart-AI-Research/HD-Painter)
-* PowerPaint: [OpenMMLab - PowerPaint](https://github.com/open-mmlab/PowerPaint)
-* BrushNet: [Tencent ARC - BrushNet](https://github.com/TencentARC/BrushNet)
 ## 🐾1. Run
-![paperteaser](./demo_out/github_teaser.jpg)
-**(The default output of freecond_app.py by using SDXL inpainting)**
 
 With the environment installed, directly run the following script, to interactively utilizing the FreeCond framework
-```
-# ipynb support
-freecond_demo.ipynb
-```
+### 1.1 Gradio Interface
+* 👍User-friendly, direct image generation
+* 👎Limit controlbilty
+
 ```
 # gradio app support
 python freecond_app.py
 ```
-![gif](./freecond_demo.gif)
+### 1.2 Jupyternote Book
+* 👍Intuitive, flaxible
+* 👎Not suit for large scale evaluation
 
-The above GIF provides a quick illustration of the FreeCond pipeline. A more detailed introduction can be found in the [video](./FreeCondDemo_video.mp4)
+```
+# ipynb support
+TF-TI2I.ipynb
+```
+### 1.3 Python Script
+* 👍Suit for evaluation, parameter searching
+* 👎Lacking flaxibilty
 
-
-| ![GIF 1](./demo_data/corgi_input_256.gif) | ![GIF 2](./demo_data/corgi_fg_256.gif) | ![GIF 3](./demo_data/corgi_bg_256.gif) | ![GIF 4](./demo_data/corgi_fq_256.gif) |
-|---------------------------------------|---------------------------------------|---------------------------------------|---------------------------------------|
-
-An illustration of how a more generalized form of inpainting conditions (FreeCond) influences the generation output
-
-
-or select from the following presets given in the freecond_app
-
-
-![preset](./demo_out/preset.png)
 ## 🤓2. For Research
 ### 👀2-1. Visualization
 ![visualization](./demo_out/self_attn_multi.png)
