@@ -22,11 +22,12 @@ With the environment installed, directly run the following script, to interactiv
 ### 1.1 Gradio Interface
 * 👍User-friendly, direct image generation
 * 👎Limit controlbilty
-
+(Based on diffusers pipeline, we support multi-GPU distribution)
 ```
 # gradio app support
-python freecond_app.py
+CUDA_VISIBLE_DEVICES=0,1 python app_TF-TI2I.py
 ```
+
 ### 1.2 Jupyternote Book
 * 👍Intuitive, flaxible
 * 👎Not suit for large scale evaluation
