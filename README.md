@@ -18,7 +18,8 @@ pip install -r requirements.txt
 ```
 ## 🐾1. Run
 
-With the environment installed, directly run the following script, to interactively utilizing the FreeCond framework
+With the environment installed, directly run the following script.
+(Our method is based on the modification of SD3.5 model, which might require around 40GB VRAM (can be deployed on 2 x RTX4090))
 ### 1.1 Gradio Interface
 * 👍User-friendly, direct image generation
 * 👎Limit controlbilty
@@ -40,4 +41,14 @@ TF-TI2I.ipynb
 * 👍Suit for evaluation, parameter searching
 * 👎Lacking flaxibilty
 
-## 🤓2. For Research
+Before running the following script download the [FG-TI2I Benchmark](https://drive.google.com/drive/folders/1G4aZnNhiLvamSh2CjTF867auIK7MFD6a?usp=sharing)
+
+
+put "1_single_entry" and "4_quad_entry" in "./data"
+```
+# Using TF-TI2I to generate for single_entry instances in FG-TI2I Benchmark
+CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_single_entry.py
+
+# Using TF-TI2I to generate for quad_entry instances in FG-TI2I Benchmark
+CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_quad_entry.py
+```
