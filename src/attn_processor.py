@@ -1783,7 +1783,7 @@ class TI2I_JointAttnProcessor2_0_multi:
         self.step=-1
         self.layer=layer
         self.wta_control_signal=wta_control_signal
-        self.wta_parameter = wta_control_signal["hyper_parameter"]
+        
         self.ref_control_signal=ref_control_signal
         self.contextual_replace = contextual_replace
         self.replace_start = replace_start
@@ -1879,6 +1879,7 @@ class TI2I_JointAttnProcessor2_0_multi:
                     if not self.wta_control_signal["on"]:
                         main_hidden_states = F.scaled_dot_product_attention(main_query, main_key, main_value, dropout_p=0.0, is_causal=False)
                     else:
+                        self.wta_parameter = self.wta_control_signal["hyper_parameter"]
                         main_hidden_states = WTA_scaled_dot_product_attention(main_query, main_key, main_value, dropout_p=0.0, is_causal=False, wta_parameter=self.wta_parameter)
                         if "debug" in self.wta_control_signal and self.wta_control_signal["debug"]:
                             if "wta_control" not in self.debug_dict:
