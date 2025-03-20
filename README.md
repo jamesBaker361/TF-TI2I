@@ -53,7 +53,7 @@ CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_single_entry.py
 CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_quad_entry.py
 ```
 ## 🌈2.Results
-![Demo](./girhub_src/TF-TI2I_demo.mp4)
+![Demo](https://www.youtube.com/watch?v=eifBk9iVzBE&ab_channel=BlueDyee)
 ![Demo1](./girhub_src/images/main_qualitative.jpg)
 ![Demo2](./girhub_src/images/app_more_emu_qualitative.jpg)
 ![Demo3](./girhub_src/images/abla_qualitative_trio.jpg)
