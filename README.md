@@ -10,6 +10,8 @@
 * ✅ **Contextual Tokens Sharing (CTS)**: By sharing contextual tokens, we can effectively aggregate the visual informations from multiple images.
 * ✅ **References Contextual Masking (RCM)**: To reduce the confliction between images, we propose References Contextual Masking to restrict the information learned from references.
 * ✅ **Winnter-Takes-All (WTA)**: We propose Winner-Takes-All module to address the distribution shift and features confliction, by assigning each vision tokens with most sailent contextual tokens.
+  
+https://github.com/user-attachments/assets/50826f21-6be4-4e21-aabd-df45e0bb49a0
 ## 🦦0. Preparation
 ```
 conda create -n tfti2i python=3.9 -y
@@ -53,11 +55,6 @@ CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_single_entry.py
 CUDA_VISIBLE_DEVICES=0,1 python TF-TI2I_quad_entry.py
 ```
 ## 🌈2.Results
-
-
-https://github.com/user-attachments/assets/50826f21-6be4-4e21-aabd-df45e0bb49a0
-
-
 ![Demo1](./girhub_src/images/main_qualitative.jpg)
 ![Demo2](./girhub_src/images/app_more_emu_qualitative.jpg)
 ![Demo3](./girhub_src/images/abla_qualitative_trio.jpg)
