@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.path.dirname(__file__))
 from diffusers import StableDiffusion3Pipeline
 from diffusers.schedulers import FlowMatchEulerDiscreteScheduler
 
