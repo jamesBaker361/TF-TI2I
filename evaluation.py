@@ -31,7 +31,6 @@ parser.add_argument("--limit",type=int,default=-1)
 parser.add_argument("--size",type=int,default=256)
 parser.add_argument("--background",action="store_true")
 parser.add_argument("--object",type=str, default="person")
-parser.add_argument("--size",type=int,default=256)
 
 
 
