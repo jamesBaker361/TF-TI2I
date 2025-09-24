@@ -9,7 +9,7 @@ from datasets import load_dataset
 import torch
 from diffusers import StableDiffusionInstructPix2PixPipeline, EulerAncestralDiscreteScheduler
 from style_rl.pipeline_stable_diffusion_3_instruct_pix2pix import StableDiffusion3InstructPix2PixPipeline
-from style_rl.main_seg import real_test_prompt_list
+from style_rl.prompt_list import real_test_prompt_list
 from style_rl.img_helpers import concat_images_horizontally
 import wandb
 from style_rl.eval_helpers import DinoMetric
