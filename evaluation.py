@@ -5,7 +5,7 @@ from accelerate import Accelerator
 import time
 import torch
 import numpy as np
-from datasets import load_dataset
+from datasets import load_dataset,Dataset
 import torch
 from diffusers import StableDiffusionInstructPix2PixPipeline, EulerAncestralDiscreteScheduler
 from style_rl.pipeline_stable_diffusion_3_instruct_pix2pix import StableDiffusion3InstructPix2PixPipeline
@@ -31,10 +31,19 @@ parser.add_argument("--limit",type=int,default=-1)
 parser.add_argument("--size",type=int,default=256)
 parser.add_argument("--background",action="store_true")
 parser.add_argument("--object",type=str, default="person")
+parser.add_argument("--dest_dataset",type=str,default="jlbaker361/rectifid")
 
 
 
 def main(args):
+    output_dict={
+        "image":[],
+        "augmented_image":[],
+        "text_score":[],
+        "image_score":[],
+        "dino_score":[],
+        "prompt":[]
+    }
     accelerator=Accelerator(log_with="wandb",mixed_precision=args.mixed_precision)
     accelerator.init_trackers(project_name=args.project_name,config=vars(args))
     torch_dtype={
@@ -177,6 +186,13 @@ def main(args):
        # ir_score_list.append(ir_score)
         dino_score_list.append(dino_score)
 
+        output_dict["augmented_image"].append(augmented_image)
+        output_dict["image"].append(image)
+        output_dict["dino_score"].append(dino_score)
+        output_dict["image_score"].append(image_score)
+        output_dict["text_score"].append(text_score)
+        output_dict["prompt"].append(prompt)
+
        
     accelerator.log({
         "text_score_list":np.mean(text_score_list),
@@ -185,6 +201,8 @@ def main(args):
        # "ir_score_list":np.mean(ir_score_list),
         "dino_score_list":np.mean(dino_score_list)
     })
+
+    Dataset.from_dict(output_dict).push_to_hub(args.dest_dataset)
 
 
 
