@@ -14,7 +14,7 @@ from style_rl.img_helpers import concat_images_horizontally
 import wandb
 from style_rl.eval_helpers import DinoMetric
 from transformers import AutoProcessor, CLIPModel
-import ImageReward as RM
+#import ImageReward as RM
 from src.customized_pipe import TI2I_StableDiffusion3Pipeline
 from src.attn_processor import TI2I_JointAttnProcessor2_0_multi
 
@@ -102,7 +102,7 @@ def main(args):
     
 
     data=load_dataset(args.src_dataset, split="train")
-    ir_model=RM.load("ImageReward-v1.0")
+    #ir_model=RM.load("ImageReward-v1.0")
 
     background_data=load_dataset("jlbaker361/real_test_prompt_list",split="train")
     background_dict={row["prompt"]:row["image"] for row in background_data}
@@ -110,7 +110,7 @@ def main(args):
     text_score_list=[]
     image_score_list=[]
     image_score_background_list=[]
-    ir_score_list=[]
+    #ir_score_list=[]
     dino_score_list=[]
 
     if args.background:
@@ -169,13 +169,13 @@ def main(args):
 
         [_,text_score,__]=logits_per_text
         [_,image_score,image_score_background]=image_similarities
-        ir_score=ir_model.score(prompt,augmented_image)
+        #ir_score=ir_model.score(prompt,augmented_image)
         dino_score=dino_metric.get_scores(image, [augmented_image])
 
         text_score_list.append(text_score.detach().cpu().numpy())
         image_score_list.append(image_score)
         image_score_background_list.append(image_score_background)
-        ir_score_list.append(ir_score)
+       # ir_score_list.append(ir_score)
         dino_score_list.append(dino_score)
 
        
@@ -183,7 +183,7 @@ def main(args):
         "text_score_list":np.mean(text_score_list),
         "image_score_list":np.mean(image_score_list),
         "image_score_background_list":np.mean(image_score_background_list),
-        "ir_score_list":np.mean(ir_score_list),
+       # "ir_score_list":np.mean(ir_score_list),
         "dino_score_list":np.mean(dino_score_list)
     })
 
