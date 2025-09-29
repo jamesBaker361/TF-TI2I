@@ -192,6 +192,44 @@ class TI2I_StableDiffusion3Pipeline(StableDiffusion3Pipeline):
 
     #     return latents
     
+    @property
+    def components(self) -> Dict[str, Any]:
+        r"""
+        The `self.components` property can be useful to run different pipelines with the same weights and
+        configurations without reallocating additional memory.
+
+        Returns (`dict`):
+            A dictionary containing all the modules needed to initialize the pipeline.
+
+        Examples:
+
+        ```py
+        >>> from diffusers import (
+        ...     StableDiffusionPipeline,
+        ...     StableDiffusionImg2ImgPipeline,
+        ...     StableDiffusionInpaintPipeline,
+        ... )
+
+        >>> text2img = StableDiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5")
+        >>> img2img = StableDiffusionImg2ImgPipeline(**text2img.components)
+        >>> inpaint = StableDiffusionInpaintPipeline(**text2img.components)
+        ```
+        """
+        expected_modules, optional_parameters = self._get_signature_keys(self)
+        components = {
+            k: getattr(self, k) for k in self.config.keys() if not k.startswith("_") and k not in optional_parameters
+        }
+
+        '''actual = sorted(set(components.keys()))
+        expected = sorted(expected_modules)
+        if actual != expected:
+            raise ValueError(
+                f"{self} has been incorrectly initialized or {self.__class__} is incorrectly implemented. Expected"
+                f" {expected} to be defined, but {actual} are defined."
+            )'''
+
+        return components
+    
     # For img2img
     def get_inverse_timesteps(self, num_inference_steps, strength, device):
         # get the original timestep using init_timestep
