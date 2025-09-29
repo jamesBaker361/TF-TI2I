@@ -157,7 +157,7 @@ def main(args):
             width=args.size,
         )
 
-        concat=concat_images_horizontally([image,augmented_image])
+        concat=concat_images_horizontally([row["image"],augmented_image])
 
         accelerator.log({
             f"image_{k}":wandb.Image(concat)
