@@ -59,8 +59,6 @@ def convert_to_raimg_prompt(source_prompt):
     if bg_match:
         ref_txt_dict["bg"]=bg_match
 
-
-    image_assignment = test_type_2_image_assigment[test_type]
     # sub_prompts=[]
     # for word in source_prompt.split():         
     #     word = word.replace("<obj>", "</obj>").replace("<bg>", "</bg>").replace("<tex>", "</tex>").replace("<act>", "</act>")
