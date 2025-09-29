@@ -161,7 +161,7 @@ def main(args):
         print(len(augmented_image))
         print(type(augmented_image[0]),type(augmented_image[1]))
 
-        concat=concat_images_horizontally([row["image"],augmented_image])
+        concat=concat_images_horizontally([row["image"]]+augmented_image)
 
         accelerator.log({
             f"image_{k}":wandb.Image(concat)
