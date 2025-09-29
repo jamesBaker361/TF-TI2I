@@ -1,0 +1,2 @@
+sbatch -J tfi2i --err=slurm_chip/eval/mtg.err --out=slurm_chip/eval/mtg.out runpygpu_chip.sh evaluation.py --src_dataset jlbaker361/mtg --dest_dataset jlbaker361/tfi2i-mtg
+sbatch -J tfi2i --err=slurm_chip/eval/dreambooth.err --out=slurm_chip/eval/dreambooth.out runpygpu_chip.sh evaluation.py --src_dataset jlbaker361/dreambooth --dest_dataset jlbaker361/tfi2i-dreambooth
