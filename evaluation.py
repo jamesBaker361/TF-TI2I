@@ -57,26 +57,26 @@ def main(args):
                                                             torch_dtype=torch_dtype,
                                                             device_map="balanced")
 
-    layer_count = 0
+    layer={"layer_count" :0}
     operator="concat"
     attn_processors = []
     def iter_net(net):
-        global layer_count
+        #global layer_count
         for child in net.children():
             if "Attention" in child.__class__.__name__:
                 child.processor = TI2I_JointAttnProcessor2_0_multi(contextual_replace=True, operator=operator,
                 wta_control_signal={"on":False},
                 ref_control_signal={"on":False})
                 attn_processors.append(child.processor)
-                layer_count += 1
+                layer["layer_count"] += 1
             iter_net(child)
 
     if args.background:
         def iter_net(net):
-            global layer_count
+            #global layer_count
             for child in net.children():
                 if "Attention" in child.__class__.__name__:
-                    child.processor = TI2I_JointAttnProcessor2_0_multi(layer=layer_count, contextual_replace=True,
+                    child.processor = TI2I_JointAttnProcessor2_0_multi(layer=layer["layer_count"], contextual_replace=True,
                                                                     wta_control_signal={"on":True,
                                                                                         "hyper_parameter":{
                                                                                                         "wta_weight":[1, 1, 1,1],
@@ -93,7 +93,7 @@ def main(args):
                                                                                         "hyper_parameter":{}},
                                                                                         )
                     attn_processors.append(child.processor)
-                    layer_count += 1
+                    layer["layer_count"] += 1
                 iter_net(child)
 
     iter_net(pipe.transformer)
