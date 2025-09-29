@@ -164,7 +164,7 @@ def main(args):
         })
         with torch.no_grad():
             inputs = processor(
-                    text=[prompt], images=[image,augmented_image,background_image], return_tensors="pt", padding=True
+                    text=[prompt], images=[row["image"],augmented_image,background_image], return_tensors="pt", padding=True
             )
 
             outputs = clip_model(**inputs)
