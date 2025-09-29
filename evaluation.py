@@ -159,7 +159,7 @@ def main(args):
 
         print(type(augmented_image))
         print(len(augmented_image))
-        print(type(augmented_image[0]))
+        print(type(augmented_image[0]),type(augmented_image[1]))
 
         concat=concat_images_horizontally([row["image"],augmented_image])
 
